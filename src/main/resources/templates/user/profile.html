@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" th:replace="~{base::parent(~{::.mainContent},~{::title})}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text="${loggedInUser.name}">| SCM</title>
+</head>
+
+<body>
+<div class="mainContent sm:pl-64 pt-16">
+    <div th:if="${loggedInUser}"> <div th:replace="~{user/sidebar::sidebar}"></div></div>
+    <div class="flex justify-center flex-col items-center">
+        <h1 class="text-5xl font-bold">Welcome to Profile Page</h1>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elitquis labore veniam sapiente quaerat hic dignissimos, alias cupiditate atque deleniti ea debitis.</p>
+    </div>
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en" th:replace="~{base::parent(~{::.mainContent},~{::title})}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Contacts</title>
+</head>
+
+<body>
+<div class="mainContent sm:pl-64 pt-16">
+    <div th:if="${loggedInUser}"> <div th:replace="~{user/sidebar::sidebar}"></div></div>
+    <div>
+        <h1 class="text-5xl font-bold text-center">All your contacts</h1>
+        <p class="text-center">These are your contacts.</p>
+        <div class="contacts_container p-5">
+            
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <form th:action="@{/user/contacts/search}">
+        <div class="flex p-5 items-center justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-700">
+            <div>
+                <select name="field" id="countries_disabled" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Select Field</option>
+                    <option value="name">Name</option>
+                    <option value="phone">Phone</option>
+                    <option value="email">Email</option>
+
+                </select></div>
+            <label for="table-search" class="sr-only">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
+                </div>
+                <input name="keyword" type="text" id="table-search-users" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for users">
+            </div>
+            <button type="submit" class="py-2 px-3 bg-gray-800 text-center text-white rounded">Search</button>
+        </div>
+    </form>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                
+                <th scope="col" class="px-6 py-3">
+                    Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Phone
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Links
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:object="${c}" th:each="c: ${pageContacts.getContent}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                
+                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                    <img class="w-10 h-10 rounded-full" th:src="@{*{picture}}" onerror="this.src='data:image/jpeg;base64,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'">
+                    <div class="ps-3">
+                        <div class="text-base font-semibold" th:text="*{name}">Neil Sims</div>
+                        <div class="font-normal text-gray-500" th:text="*{email}">neil.sims@flowbite.com</div>
+                    </div>  
+                </th>
+                <td class="px-6 py-4">
+                    <i class="fa-solid fa-phone h-4 w-4"></i>
+                    <span th:text = "*{phoneNumber}"></span>
+                </td>
+                <td class="px-6 py-4">  
+                    <div class="flex items-center gap-2">
+                        <div th:if="*{favourite}" class="h-2.5 w-2.5 rounded-full bg-green-500 me-2"></div>
+                        <a th:href="@{*{websiteLink}}" target="_blank"><i class="fa-solid fa-link w-5 h-5"></i></a>
+                        <a th:href="@{*{linkedLink}}" target="_blank"><i class="fa-brands fa-linkedin w-5 h-5"></i></a>
+                    </div>
+                </td>
+                <td class="px-6 py-4">
+                    <div>
+                        <a href=""><i class="fa-solid w-6 h-6 fa-trash"></i></a>
+                        <a href=""><i class="fa-solid w-6 h-6 fa-pen"></i></a>
+                        <button onclick="openContactModal()" ><i class="fa-solid w-6 h-6 fa-eye"></i></button>
+                    </div>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+    <!-- pagination -->
+    <div class="pagination_container  text-center p-10">
+        <nav aria-label="Page navigation example">
+            <ul class="inline-flex -space-x-px text-sm">
+              <li th:unless="${pageContacts.first}">
+                <a th:href="@{'/user/contacts?size=3&page='+${pageContacts.getNumber-1}}" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+              </li>
+              <li th:each = "index: ${#numbers.sequence(0,pageContacts.totalPages-1)}">
+                <a th:classappend="${index==pageContacts.getNumber? 'text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-blue-700 dark:bg-sky-700 dark:text-white':'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'}" 
+                th:href="@{'/user/contacts?size=3&page='+${index}}" class="flex items-center justify-center px-3 h-8 leading-tight"><span th:text="${index+1}"></span></a>
+              </li>
+              
+              <li th:unless="${pageContacts.isLast}">
+                <a th:href="@{'/user/contacts?size=3&page='+${pageContacts.getNumber+1}}" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+              </li>
+            </ul>
+          </nav>
+          
+    </div>
+</div>
+
+        </div>
+    </div>
+    <div th:replace="~{user/contact_modals :: modal}"></div>
+    <script th:src="@{/js/contacts.js}"></script>>
+</div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+</body>
+</html>
