@@ -1,85 +1,65 @@
-📇 Smart Contact Manager
-Smart Contact Manager is a full-stack web application designed to help users efficiently manage their contacts. It offers CRUD operations, categorization, direct email functionality, and secure role-based access.
+# 📇 Smart Contact Manager
 
-🚀 Features
-✅ Contact Management
-Add, update, delete, and categorize contacts (e.g., Family, Work).
+Smart Contact Manager is a full-stack web application designed to help users efficiently manage and communicate with their contacts. It offers robust contact management, direct email integration, and secure role-based access, all wrapped in a responsive UI.
 
-✅ Direct Email
-Send emails seamlessly from within the app.
+---
 
-✅ Security
-Secure login and role-based access using Spring Security.
+## 🚀 Features
 
-✅ Responsive UI
-Built with Tailwind CSS and Thymeleaf templates for a clean and responsive user interface.
+### ✅ Contact Management
+  - Add, update, delete contacts
+  - Categorize contacts by groups such as Family, Work, Friends, etc.
 
-🛠️ Tech Stack
-🔧 Backend
-Java 17+
+### ✉️ Direct Email
+- Send emails directly from the app using integrated SMTP
 
-Spring Boot
+### 🔐 Secure Authentication
+- Role-based login and access control using Spring Security
+- Ability to fix issues based on suggestions
 
-Spring Security
+### 💾 Backend & Database
+- Backend built with **Java** and **Spring Boot**
+- Uses **MySQL** for storing user activity and contacts.
 
-MySQL
+---
 
-Spring Data JPA
 
-🌐 Frontend
-Thymeleaf (server-side rendering)
+## 🛠️ Tech Stack
 
-Tailwind CSS
+### 🔧 Backend
+- Java 17+
+- Spring Boot
+- Spring Security
+- Spring Data JPA
+- MySQL
+- REST APIs
 
-📦 Getting Started
-🧰 Prerequisites
-Java 17+
+### 🌐 Frontend
+- Thymeleaf (server-side rendering)
+- Tailwind CSS
+  
+---
 
-Maven
+## 📦 Getting Started
 
-MySQL Server
+### 🧰 Prerequisites
 
-🔄 Clone the Repository
-bash
-Copy
-Edit
-git clone https://github.com/yourusername/smart-contact-manager.git
-⚙️ Setup
-Create a MySQL database (e.g., smart_contact_manager).
+- Java 17+
+- Node.js + npm
+- MySQL
+- Maven
 
-Update database credentials and SMTP settings in src/main/resources/application.properties.
+### 🔄 Clone the Repo
 
-Build and run the app:
+git clone https://github.com/EvilGame619/smart-contact-manager.git
 
-bash
-Copy
-Edit
-mvn clean install
-mvn spring-boot:run
-🌐 Access
-Open your browser at http://localhost:8080
+---
 
-🗂️ Project Structure
-bash
-Copy
-Edit
-src/
- ├── main/
- │    ├── java/com/yourorg/smartcontactmanager/
- │    │    ├── controller/        # Web controllers
- │    │    ├── model/             # JPA entities
- │    │    ├── repository/        # Data access layer
- │    │    ├── service/           # Business logic
- │    │    └── security/          # Security config
- │    └── resources/
- │         ├── templates/         # Thymeleaf views
- │         ├── static/            # Tailwind CSS and static assets
- │         └── application.properties
-🔮 Future Improvements
-REST API support for decoupled frontends or mobile apps
+## ⚙️ Setup & Run
+- Create a MySQL database (e.g., smart_contact_manager)
+- Update database credentials and SMTP settings in src/main/resources/application.properties
+- Build and run the application:
+  - mvn clean install
+  - mvn spring-boot:run
+  - Open your browser at http://localhost:8080
 
-OAuth/social login integration
-
-Enhanced search and filtering for contacts
-
-UI improvements with advanced Tailwind components
